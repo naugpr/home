@@ -6,8 +6,8 @@
     "build": "hugo --gc --minify",
     "lint": "echo 'TODO: add lint script'"
   },
-  "dependencies": {},
   "devDependencies": {
-    "hugo-bin": "^0.114.0"
+    "hugo-bin": "^0.114.0",
+    "hugoblox": "^0.12.6"
   }
 }
