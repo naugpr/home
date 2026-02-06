@@ -1,5 +1,6 @@
 ---
 title: start - modified
+type: landing
 layout: index_layout
 Date: 2026-02-05T08:52:00Z
 draft: true
