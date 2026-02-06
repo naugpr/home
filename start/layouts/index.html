@@ -121,6 +121,13 @@
 </head>
 <body>
   <main>
+    {{- if .Content -}}
+      <section class="section markdown-block">
+        <div class="container">
+          {{ .Content }}
+        </div>
+      </section>
+    {{- end -}}
     {{- range.Params.sections -}}
       {{- if eq .block "hero" -}}
         <section class="section hero-block">

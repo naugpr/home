@@ -1,3 +1,5 @@
+## My First Hugo Page
+
 # start
 
 This site was created with **HugoBlox Studio** using the **Startup Landing Page** template.
