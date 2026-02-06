@@ -121,16 +121,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="content-box">
+  <main>
+    {{ $image := resources.Get "images/joshuatree.jpg" }}   
+
+    <center>
+    <div class="container1">
+        <div class="content-box1">
             <h2>This is the Div Box</h2>
             <p>You can place any text or elements here. The content will flow within this box.</p>
         </div>
-        <div class="image-box">
+        <div class="image-box1">
             <!-- Replace 'placeholder-image.jpg' with your actual image file path -->
-            <img src="../assets/images/joshuatree.jpg" alt="Image of joshuatrees">
+            <img src="{{ $image.RelPermalink }}" alt="Image of joshuatrees">
         </div>
     </div>
+    </center>
+  </main>
 
   <main>
     {{- if .Content -}}
@@ -166,6 +172,10 @@
           </div>
         </section>
       {{- end -}}
+
+
+
+      
       {{- if eq .block "markdown" -}}
         <section class="section markdown-block">
           <div class="container">
@@ -179,6 +189,8 @@
         </section>
       {{- end -}}
     {{- end -}}
+
   </main>
+
 </body>
 </html>

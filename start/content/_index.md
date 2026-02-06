@@ -1,7 +1,9 @@
 ---
-title: "start - modified"
-layout: index_copy
+title: start - modified
+layout: index_layout
 Date: 2026-02-05T08:52:00Z
+draft: true
+
 ---
 
 # Start

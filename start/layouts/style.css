@@ -1,25 +1,27 @@
-.container {
+.container1 {
     display: flex; /* Uses flexbox for side-by-side arrangement */
     justify-content: center; /* Centers the items horizontally */
     align-items: center; /* Centers the items vertically */
     gap: 20px; /* Adds space between the two items */
     padding: 20px;
     border: 1px solid #ccc;
+    width: 800px;
     max-width: 800px; /* Optional: limits the width of the container */
     margin: 0 auto; /* Optional: centers the container on the page */
+    border: 1px solid red;
 }
 
-.content-box, .image-box {
+.content-box1, .image-box1 {
     flex: 1; /* Makes both items take up equal space */
     padding: 15px;
-    border: 1px solid #eee;
+    border: 1px solid green;
 }
 
-.content-box {
+.content-box1 {
     background-color: #f9f9f9;
 }
 
-.image-box img {
+.image-box1 img {
     max-width: 100%; /* Ensures the image fits inside its container */
     height: auto;
     display: block; /* Removes extra space below the image */
