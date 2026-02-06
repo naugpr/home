@@ -1,10 +1,12 @@
 ---
-title: "start"
+title: "start - modified"
+layout: index_copy
+Date: 2026-02-05T08:52:00Z
 ---
 
-# start
+# Start
 
-This site was created with **HugoBlox Studio** using the **Startup Landing Page** template.
+This site was created with **HugoBlox Studio** using the **_Startup Landing Page_** template.
 
 ## Getting Started
 
