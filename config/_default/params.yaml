@@ -1,17 +1,19 @@
 hugoblox:
   schema: "2.0"
   identity:
-    name: ""
+    name: Department of Geography, Planning, and Recreation
     type: organization
-    tagline: ""
-    description: ""
+    tagline: Higher Education, NAU
+    description: Northern Arizona University has been offering Bachelor of Science degrees in Recreation since 1961, and a Bachelor of Science in Geography since 1967.
   theme:
     mode: system
-    pack: marine
+    pack: retro
     colors:
-      primary: gray
+      primary: ""
       secondary: ""
       neutral: ""
+    surfaces:
+      header: {}
   typography:
     font: sans
     size: md
