@@ -1,7 +1,7 @@
 ---
 title: Sandbox
 type: landing
-layout: none
+layout: 
 Date: 2026-02-05T08:52:00Z
 
 sections:
