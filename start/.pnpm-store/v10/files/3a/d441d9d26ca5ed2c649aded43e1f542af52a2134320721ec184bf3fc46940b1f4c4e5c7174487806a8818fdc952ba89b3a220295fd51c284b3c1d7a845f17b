@@ -1,0 +1,2 @@
+#!/usr/bin/env node
+export { d as bootstrap, b as createWelcomeScreenAPI, c as ensureTelemetryId, a as getCliVersion } from './chunk-IXNTW5UW.js';

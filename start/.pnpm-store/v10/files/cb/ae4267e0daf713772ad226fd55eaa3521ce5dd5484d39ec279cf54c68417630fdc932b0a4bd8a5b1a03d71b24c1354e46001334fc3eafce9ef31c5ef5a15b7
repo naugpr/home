@@ -1,0 +1,219 @@
+interface TemplateInfo {
+    readonly id: string;
+    readonly name: string;
+    readonly description?: string;
+    readonly repoPath?: string;
+    readonly slug: string;
+    readonly tags?: string[];
+    readonly source?: "oss" | "pro" | "custom";
+    readonly version?: string;
+    readonly downloadEndpoint?: string;
+    readonly sizeBytes?: number | null;
+    readonly updatedAt?: string;
+    readonly commitHash?: string | null;
+}
+interface HbxConfigData {
+    readonly token?: string;
+    readonly telemetry?: {
+        enabled?: boolean;
+        lastPrompted?: number;
+        id?: string;
+    };
+    readonly device?: DeviceConfigData;
+    readonly updates?: {
+        lastChecked?: number;
+        latestVersion?: string;
+        lastNotifiedAt?: number;
+    };
+    readonly defaults?: {
+        template?: string;
+    };
+}
+interface DeviceConfigData {
+    readonly id?: string;
+    readonly label?: string;
+    readonly secretAlias?: string;
+    readonly secretFallback?: string;
+    readonly secretFallbackSalt?: string;
+}
+
+interface WelcomeScreenAPI {
+    templates: {
+        fetchAll(options?: TemplateQueryOptions): Promise<TemplateWithPreview[]>;
+        getById(id: string): Promise<TemplateWithPreview | null>;
+        getPreview(id: string): Promise<TemplatePreview | null>;
+    };
+    creation: {
+        create(config: SiteCreationConfig): AsyncIterable<CreationStep>;
+        validate(config: SiteCreationConfig): Promise<ValidationResult>;
+        cancel(): Promise<void>;
+    };
+    system: {
+        detectPackageManager(path?: string): Promise<PackageManager>;
+        validatePath(path: string): Promise<PathValidation>;
+        getDefaultConfig(): WelcomeScreenConfig;
+    };
+}
+interface SiteCreationConfig {
+    templateId: string;
+    siteName: string;
+    targetPath: string;
+    packageManager?: PackageManager;
+    options?: {
+        includeSampleContent?: boolean;
+        initGit?: boolean;
+        autoInstall?: boolean;
+        autoPreview?: boolean;
+    };
+}
+interface TemplateWithPreview extends TemplateInfo {
+    preview: {
+        thumbnailUrl: string;
+        category: TemplateCategory;
+        difficulty: TemplateDifficulty;
+        estimatedTime: number;
+        features: string[];
+        useCases: string[];
+    };
+    stats?: {
+        popularity: number;
+        lastUpdated: string;
+        downloads?: number;
+    };
+}
+interface CreationStep {
+    id: string;
+    type: "info" | "progress" | "success" | "error" | "warning";
+    title: string;
+    message?: string;
+    progress?: number;
+    timestamp: Date;
+    data?: {
+        templateId?: string;
+        path?: string;
+        url?: string;
+        error?: Error;
+        [key: string]: unknown;
+    };
+}
+interface TemplatePreview {
+    templateId: string;
+    thumbnailUrl: string;
+    screenshots: string[];
+    demoUrl?: string;
+    features: string[];
+    useCases: string[];
+}
+interface ValidationResult {
+    valid: boolean;
+    errors: ValidationError[];
+    warnings: ValidationWarning[];
+}
+interface ValidationError {
+    field: keyof SiteCreationConfig;
+    message: string;
+    code: string;
+}
+interface ValidationWarning {
+    field: keyof SiteCreationConfig;
+    message: string;
+    suggestion?: string;
+}
+type PackageManager = "pnpm" | "npm" | "yarn";
+interface PathValidation {
+    valid: boolean;
+    exists: boolean;
+    isEmpty: boolean;
+    writable: boolean;
+    error?: string;
+}
+interface WelcomeScreenConfig extends SiteCreationConfig {
+    showAdvanced: boolean;
+    rememberedChoices: {
+        lastPackageManager?: PackageManager;
+        lastTargetPath?: string;
+    };
+}
+type TemplateCategory = "academic" | "business" | "portfolio" | "blog" | "documentation" | "other";
+type TemplateDifficulty = "beginner" | "intermediate" | "advanced";
+interface TemplateQueryOptions {
+    category?: TemplateCategory;
+    difficulty?: TemplateDifficulty;
+    source?: "oss" | "pro" | "custom";
+    sortBy?: "popularity" | "name" | "difficulty" | "recent";
+    limit?: number;
+}
+interface WelcomeAPIOptions {
+    debug?: boolean;
+    telemetryEnabled?: boolean;
+    cacheDir?: string;
+    progressCallback?: (step: CreationStep) => void;
+}
+
+/**
+ * Creates a new instance of the Welcome Screen API
+ * This is the main entry point for integrating hugoblox CLI functionality into welcome screens
+ */
+declare function createWelcomeScreenAPI(options?: WelcomeAPIOptions): Promise<WelcomeScreenAPI>;
+
+declare function getCliVersion(): string;
+
+declare function ensureTelemetryId(): Promise<string>;
+
+interface ConfigStoreApi {
+    toJSON(): HbxConfigData;
+    getLicense(): string | undefined;
+    setLicense(license: string): void;
+    clearLicense(): void;
+    isTelemetryEnabled(): boolean;
+    setTelemetryEnabled(value: boolean): void;
+    getTelemetryId(): string | undefined;
+    ensureTelemetryId(): Promise<string>;
+    getUpdateMetadata(): HbxConfigData["updates"] | undefined;
+    setUpdateMetadata(partial: Partial<NonNullable<HbxConfigData["updates"]>>): void;
+    getDeviceInfo(): HbxConfigData["device"] | undefined;
+    setDeviceInfo(info: HbxConfigData["device"] | undefined): void;
+    getDefaultTemplate(): string | undefined;
+    save(): Promise<void>;
+}
+
+interface LoggerOptions {
+    readonly json?: boolean;
+    readonly debug?: boolean;
+}
+declare class Logger {
+    #private;
+    constructor(options?: LoggerOptions);
+    isJsonMode(): boolean;
+    setJsonMode(value: boolean): void;
+    setDebug(value: boolean): void;
+    info(message: string): void;
+    success(message: string): void;
+    warn(message: string): void;
+    error(message: string): void;
+    debug(message: string): void;
+    json(payload: unknown): void;
+}
+
+interface TelemetryEvent {
+    readonly name: string;
+    readonly payload?: Record<string, unknown>;
+}
+declare class TelemetryClient {
+    #private;
+    constructor(config: ConfigStoreApi, logger: Logger, cliVersion: string, cliName?: string);
+    isEnabled(): boolean;
+    setCommand(command?: string): void;
+    track(event: TelemetryEvent): Promise<void>;
+    flush(): Promise<void>;
+}
+
+interface HbxContext {
+    readonly config: ConfigStoreApi;
+    readonly logger: Logger;
+    readonly telemetry: TelemetryClient;
+}
+
+declare function bootstrap(argv?: string[]): Promise<void>;
+
+export { type CreationStep, type HbxContext, type PackageManager, type SiteCreationConfig, type TemplateQueryOptions, type TemplateWithPreview, type ValidationResult, type WelcomeAPIOptions, type WelcomeScreenAPI, type WelcomeScreenConfig, bootstrap, createWelcomeScreenAPI, ensureTelemetryId, getCliVersion };

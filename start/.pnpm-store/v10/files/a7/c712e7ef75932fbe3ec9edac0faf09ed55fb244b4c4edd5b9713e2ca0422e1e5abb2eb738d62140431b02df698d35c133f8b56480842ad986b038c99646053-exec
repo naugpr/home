@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+import { d } from './chunk-IXNTW5UW.js';
+
+d();
