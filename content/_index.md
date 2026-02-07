@@ -15,7 +15,8 @@ sections:
       filename: joshuatree.jpg
     design:
       background:
-        color: 'rgba(0, 52, 102, 0.7)'
+        gradient-start: 'rgba(0, 52, 102, 0.7)'
+        gradient_end: 'rgba(0, 52, 102, 0.7)'
         text_color_light: true
   - block: markdown
     content:
