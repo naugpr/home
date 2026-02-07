@@ -1,9 +1,9 @@
 ---
 title: Sandbox
 type: landing
-layout: mylayout
+
 Date: 2026-02-05T08:52:00Z
-draft: false
+
 sections:
   - block: hero
     content:
