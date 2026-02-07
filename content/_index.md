@@ -11,7 +11,7 @@ sections:
         ## Department of Geography, Planning & Recreation
     design:
       background:
-        color: 'rgba(0, 52, 102, 0.7'
+        color: 'rgba(0, 52, 102, 0.7)'
         text_color_light: true
   - block: markdown
     content:
