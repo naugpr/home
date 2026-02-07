@@ -3,7 +3,6 @@ title: start - modified
 type: landing
 layout: mylayout
 Date: 2026-02-05T08:52:00Z
-draft: true
 sections:
   - block: hero
     content:
