@@ -8,11 +8,11 @@ sections:
   - block: hero
     content:
       title: Department of Geography, Planning & Recreation
-    text: |
-      ## Northern Arizona University
-      The GPR department promotes experiential and applied educational experiences and serves both on campus and online students.
-    image:
-      filename: joshuatree.jpg
+      text: |
+        ## Northern Arizona University
+        The GPR department promotes experiential and applied educational experiences and serves both on campus and online students.
+      image:
+        filename: joshuatree.jpg
     design:
       background:
         gradient-start: 'rgba(0, 52, 102, 0.7)'
