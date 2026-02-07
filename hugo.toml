@@ -1,6 +1,6 @@
 # Hugo Configuration File
 title = "start"
-baseURL = "https://example.com"
+baseURL = "https://naugpr.github.io/home/"
 languageCode = "en-us"
 
 # Theme Configuration
