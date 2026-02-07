@@ -117,27 +117,44 @@
       height: 1em;
       vertical-align: -0.125em;
     }
-  </style>
-  <link rel="stylesheet" href="style.css">
+
+.box0 {
+    display: flex; /* Uses flexbox for side-by-side arrangement */
+    justify-content: center; /* Centers the items horizontally */
+    align-items: center; /* Centers the items vertically */
+    gap: 20px; /* Adds space between the two items */
+    padding: 10px;
+    border: 1px solid #ccc;
+    max-width: 960px; /* Optional: limits the width of the container */
+    margin: 0 auto; /* Optional: centers the container on the page */
+    border: 1px solid red;
+}
+
+.box1, .box2 {
+    flex: 1; /* Makes both items take up equal space */
+    padding: 15px;
+    border: 1px solid green;
+    width: 50%; /* Ensures both boxes take up 50% of the container width */
+    height: 100%; /* Ensures both boxes are the same height */;
+    min-width: 300px; /* Optional: ensures boxes don't get too narrow on smaller screens */
+    float:left;
+}
+
+.box1 {
+    background-color: #f9f9f9; 
+    text-align: left;
+}
+
+.box2 img {
+    max-width: 100%; /* Ensures the image fits inside its container */
+    height: auto;
+    display: block; /* Removes extra space below the image */
+}
+
+</style>
+  <!--<link rel="stylesheet" href="mystyles.css">-->
 </head>
 <body>
-  <main>
-    {{ $image := resources.Get "images/joshuatree.jpg" }}   
-
-    <center>
-    <div class="container1">
-        <div class="content-box1">
-            <h2>This is the Div Box</h2>
-            <p>You can place any text or elements here. The content will flow within this box.</p>
-        </div>
-        <div class="image-box1">
-            <!-- Replace 'placeholder-image.jpg' with your actual image file path -->
-            <img src="{{ $image.RelPermalink }}" alt="Image of joshuatrees">
-        </div>
-    </div>
-    </center>
-  </main>
-
   <main>
     {{- if .Content -}}
       <section class="section markdown-block">
@@ -172,9 +189,6 @@
           </div>
         </section>
       {{- end -}}
-
-
-
       
       {{- if eq .block "markdown" -}}
         <section class="section markdown-block">
@@ -190,6 +204,23 @@
       {{- end -}}
     {{- end -}}
 
+  </main>
+
+  <main>
+    {{ $image := resources.Get "images/joshuatree.jpg" }}   
+
+    <center>
+    <div class="box0">
+        <div class="box1">
+            <h2>Department of Geography, Planning & Recreation</h2>
+            <p>Northern Arizona University has been offering Bachelor of Science degrees in Recreation since 1961, and a Bachelor of Science in Geography since 1967, although geography courses have been taught at NAU since 1934. The department of Geography, Planning & Recreation (GPR), a unit within the college of Social and Behavioral Sciences, was created in 2003. The GPR department promotes experiential and applied educational experiences and serves both on campus and online students.</p>
+        </div>
+        <div class="box2">
+            <!-- Replace 'placeholder-image.jpg' with your actual image file path -->
+            <img src="{{ $image.RelPermalink }}" alt="Image of joshuatrees">
+        </div>
+    </div>
+    </center>
   </main>
 
 </body>

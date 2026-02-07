@@ -1,4 +1,4 @@
-.container1 {
+.box0 {
     display: flex; /* Uses flexbox for side-by-side arrangement */
     justify-content: center; /* Centers the items horizontally */
     align-items: center; /* Centers the items vertically */
@@ -6,22 +6,22 @@
     padding: 20px;
     border: 1px solid #ccc;
     width: 800px;
-    max-width: 800px; /* Optional: limits the width of the container */
+    max-width: 960px; /* Optional: limits the width of the container */
     margin: 0 auto; /* Optional: centers the container on the page */
     border: 1px solid red;
 }
 
-.content-box1, .image-box1 {
+.box1, .box2 {
     flex: 1; /* Makes both items take up equal space */
     padding: 15px;
     border: 1px solid green;
 }
 
-.content-box1 {
+.box1 {
     background-color: #f9f9f9;
 }
 
-.image-box1 img {
+.box2 img {
     max-width: 100%; /* Ensures the image fits inside its container */
     height: auto;
     display: block; /* Removes extra space below the image */
