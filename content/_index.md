@@ -7,10 +7,11 @@ draft: false
 sections:
   - block: hero
     content:
-      title: "Department of Geography, Planning & Recreation"
+      title: |
+        ## Department of Geography, Planning & Recreation
     design:
       background:
-        color: 'navy'
+        color: 'rgba(0, 52, 102, 0.7'
         text_color_light: true
   - block: markdown
     content:
