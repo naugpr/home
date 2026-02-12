@@ -3,7 +3,15 @@ title: NAU GPR
 type: landing
 layout: mylayout
 Date: 2026-02-05T08:52:00Z
-
+menu:
+  main:
+    - name: About
+      url: https://nau.edu/gpr/
+    - name: Programs
+      url: http://google.com
+    - name: People
+      url: http://maps.google.com
+      
 sections:
   - block: hero
     content:
